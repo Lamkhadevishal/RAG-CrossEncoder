@@ -44,7 +44,7 @@ def _load_config() -> dict:
         "CHUNK_SIZE": os.getenv("CHUNK_SIZE", "500"),
         "CHUNK_OVERLAP": os.getenv("CHUNK_OVERLAP", "50"),
         "LLM_PROVIDER": os.getenv("LLM_PROVIDER", "groq"),
-        "LLM_MODEL": os.getenv("LLM_MODEL", "llama3-8b-8192"),
+        "LLM_MODEL": os.getenv("LLM_MODEL", ""),
         "LLM_API_KEY": os.getenv("LLM_API_KEY", ""),
     }
 
