@@ -125,6 +125,11 @@ st.markdown("""
     }
     .doc-name  { font-weight: 600; color: #1a3a5c; }
     .doc-meta  { color: #6c757d; font-size: 0.78rem; }
+    @media (prefers-color-scheme: dark) {
+        .doc-row  { background: #1e2a3a; border-color: #2d4a6a; }
+        .doc-name { color: #90c8f0; }
+        .doc-meta { color: #a0aab4; }
+    }
 
     .score-badge {
         display: inline-block; background: #27ae60; color: white;
@@ -140,11 +145,21 @@ st.markdown("""
         border-radius: 12px 12px 12px 4px; margin: 0.5rem 0;
         max-width: 80%; font-size: 0.92rem; border-left: 3px solid #27ae60;
     }
+    @media (prefers-color-scheme: dark) {
+        .chat-answer { background: #1a2a1a; color: #d4edda; border-left-color: #2ecc71; }
+    }
     .status-ready   { color: #27ae60; font-weight: 700; }
     .status-pending { color: #e67e22; font-weight: 700; }
     .confirm-box {
-        background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px;
+        background: #fff3cd; border: 2px solid #e67e22; border-radius: 8px;
         padding: 0.7rem 1rem; margin: 0.4rem 0; font-size: 0.85rem;
+        color: #7d4400; font-weight: 500;
+    }
+    @media (prefers-color-scheme: dark) {
+        .confirm-box {
+            background: #3d2600; border: 2px solid #f39c12;
+            color: #ffd580; font-weight: 500;
+        }
     }
     #MainMenu, footer { visibility: hidden; }
 </style>
