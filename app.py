@@ -101,66 +101,165 @@ def _restore_on_startup():
 _restore_on_startup()
 
 # ---------------------------------------------------------------------------
-# CSS
+# CSS  — CSS custom properties for light/dark theming
 # ---------------------------------------------------------------------------
 st.markdown("""
 <style>
-    .app-header {
-        background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 100%);
-        padding: 1.5rem 2rem; border-radius: 12px; color: white; margin-bottom: 1.5rem;
-    }
-    .app-header h1 { margin: 0; font-size: 1.8rem; }
-    .app-header p  { margin: 0.3rem 0 0; opacity: 0.85; font-size: 0.95rem; }
+    /* ── Light mode tokens ───────────────────────────────────────────────── */
+    :root {
+        --bg-card:          #ffffff;
+        --bg-card-alt:      #f4f8fb;
+        --bg-card-info:     #eaf4fb;
+        --border:           #d0dce8;
+        --border-accent:    #2d6a9f;
+        --border-info:      #aed6f1;
 
-    .workflow-strip { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
-    .wf-step {
-        background: #e8f4fd; color: #1a5276; padding: 0.25rem 0.7rem;
-        border-radius: 20px; font-size: 0.78rem; font-weight: 600; border: 1px solid #aed6f1;
-    }
-    .wf-arrow { color: #7f8c8d; line-height: 2; font-size: 0.85rem; }
+        --text-primary:     #1a2a3a;
+        --text-secondary:   #4a6080;
+        --text-muted:       #6c7a8a;
+        --text-on-accent:   #ffffff;
 
-    .doc-row {
-        background: white; border: 1px solid #dee2e6; border-left: 4px solid #2d6a9f;
-        border-radius: 8px; padding: 0.5rem 0.8rem; margin-bottom: 0.5rem; font-size: 0.85rem;
-    }
-    .doc-name  { font-weight: 600; color: #1a3a5c; }
-    .doc-meta  { color: #6c757d; font-size: 0.78rem; }
-    @media (prefers-color-scheme: dark) {
-        .doc-row  { background: #1e2a3a; border-color: #2d4a6a; }
-        .doc-name { color: #90c8f0; }
-        .doc-meta { color: #a0aab4; }
+        --wf-bg:            #e8f4fd;
+        --wf-text:          #1a5276;
+        --wf-border:        #aed6f1;
+        --wf-arrow:         #7a8a9a;
+
+        --chat-user-bg:     #2d6a9f;
+        --chat-user-text:   #ffffff;
+        --chat-ans-bg:      #f0f6fc;
+        --chat-ans-text:    #1a2a3a;
+        --chat-ans-border:  #27ae60;
+
+        --badge-bg:         #27ae60;
+        --badge-text:       #ffffff;
+
+        --confirm-bg:       #fff8ec;
+        --confirm-border:   #e67e22;
+        --confirm-text:     #7d3c00;
+
+        --status-ready:     #1e8449;
+        --status-pending:   #d35400;
     }
 
-    .score-badge {
-        display: inline-block; background: #27ae60; color: white;
-        padding: 0.15rem 0.55rem; border-radius: 12px; font-size: 0.78rem; font-weight: 700;
-    }
-    .chat-user {
-        background: #2d6a9f; color: white; padding: 0.7rem 1rem;
-        border-radius: 12px 12px 4px 12px; margin: 0.5rem 0;
-        max-width: 80%; margin-left: auto; font-size: 0.92rem;
-    }
-    .chat-answer {
-        background: #f0f4f8; color: #1a1a2e; padding: 0.7rem 1rem;
-        border-radius: 12px 12px 12px 4px; margin: 0.5rem 0;
-        max-width: 80%; font-size: 0.92rem; border-left: 3px solid #27ae60;
-    }
+    /* ── Dark mode tokens ────────────────────────────────────────────────── */
     @media (prefers-color-scheme: dark) {
-        .chat-answer { background: #1a2a1a; color: #d4edda; border-left-color: #2ecc71; }
-    }
-    .status-ready   { color: #27ae60; font-weight: 700; }
-    .status-pending { color: #e67e22; font-weight: 700; }
-    .confirm-box {
-        background: #fff3cd; border: 2px solid #e67e22; border-radius: 8px;
-        padding: 0.7rem 1rem; margin: 0.4rem 0; font-size: 0.85rem;
-        color: #7d4400; font-weight: 500;
-    }
-    @media (prefers-color-scheme: dark) {
-        .confirm-box {
-            background: #3d2600; border: 2px solid #f39c12;
-            color: #ffd580; font-weight: 500;
+        :root {
+            --bg-card:          #1c2733;
+            --bg-card-alt:      #152028;
+            --bg-card-info:     #16263a;
+            --border:           #2c3e50;
+            --border-accent:    #5b9bd5;
+            --border-info:      #2e5f8a;
+
+            --text-primary:     #dce8f0;
+            --text-secondary:   #8fb8d8;
+            --text-muted:       #7a94a8;
+            --text-on-accent:   #ffffff;
+
+            --wf-bg:            #1a2e42;
+            --wf-text:          #7ec8e3;
+            --wf-border:        #2e5f8a;
+            --wf-arrow:         #5a7a8a;
+
+            --chat-user-bg:     #1a4a7a;
+            --chat-user-text:   #e8f4fd;
+            --chat-ans-bg:      #152818;
+            --chat-ans-text:    #c8e6c9;
+            --chat-ans-border:  #2ecc71;
+
+            --badge-bg:         #1e7a45;
+            --badge-text:       #d4f5e0;
+
+            --confirm-bg:       #2d1a00;
+            --confirm-border:   #e6952a;
+            --confirm-text:     #ffc96e;
+
+            --status-ready:     #2ecc71;
+            --status-pending:   #f39c12;
         }
     }
+
+    /* ── App header (always dark gradient — readable in both modes) ───────── */
+    .app-header {
+        background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 100%);
+        padding: 1.5rem 2rem; border-radius: 12px;
+        color: #ffffff; margin-bottom: 1.5rem;
+    }
+    .app-header h1 { margin: 0; font-size: 1.8rem; }
+    .app-header p  { margin: 0.3rem 0 0; opacity: 0.88; font-size: 0.95rem; }
+
+    /* ── Workflow badge strip ─────────────────────────────────────────────── */
+    .workflow-strip {
+        display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem;
+    }
+    .wf-step {
+        background: var(--wf-bg); color: var(--wf-text);
+        padding: 0.25rem 0.7rem; border-radius: 20px;
+        font-size: 0.78rem; font-weight: 600;
+        border: 1px solid var(--wf-border);
+    }
+    .wf-arrow { color: var(--wf-arrow); line-height: 2; font-size: 0.85rem; }
+
+    /* ── Document row card ───────────────────────────────────────────────── */
+    .doc-row {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-left: 4px solid var(--border-accent);
+        border-radius: 8px; padding: 0.5rem 0.8rem;
+        margin-bottom: 0.5rem; font-size: 0.85rem;
+    }
+    .doc-name { font-weight: 600; color: var(--text-secondary); }
+    .doc-meta { color: var(--text-muted);  font-size: 0.78rem; }
+
+    /* ── Score badge ─────────────────────────────────────────────────────── */
+    .score-badge {
+        display: inline-block;
+        background: var(--badge-bg); color: var(--badge-text);
+        padding: 0.15rem 0.55rem; border-radius: 12px;
+        font-size: 0.78rem; font-weight: 700;
+    }
+
+    /* ── Chat bubbles ────────────────────────────────────────────────────── */
+    .chat-user {
+        background: var(--chat-user-bg); color: var(--chat-user-text);
+        padding: 0.7rem 1rem; border-radius: 12px 12px 4px 12px;
+        margin: 0.5rem 0; max-width: 80%; margin-left: auto; font-size: 0.92rem;
+    }
+    .chat-answer {
+        background: var(--chat-ans-bg); color: var(--chat-ans-text);
+        padding: 0.7rem 1rem; border-radius: 12px 12px 12px 4px;
+        margin: 0.5rem 0; max-width: 80%; font-size: 0.92rem;
+        border-left: 3px solid var(--chat-ans-border);
+    }
+
+    /* ── Query display boxes ─────────────────────────────────────────────── */
+    .query-box {
+        background: var(--bg-card-alt);
+        border: 1px solid var(--border);
+        border-radius: 10px; padding: 0.8rem 1.2rem; margin-bottom: 0.4rem;
+        color: var(--text-primary);
+    }
+    .rewrite-box {
+        background: var(--bg-card-info);
+        border: 1px solid var(--border-info);
+        border-radius: 10px; padding: 0.6rem 1.2rem;
+        margin-bottom: 1rem; font-size: 0.88rem;
+        color: var(--text-secondary);
+    }
+
+    /* ── Status pills ────────────────────────────────────────────────────── */
+    .status-ready   { color: var(--status-ready);   font-weight: 700; }
+    .status-pending { color: var(--status-pending); font-weight: 700; }
+
+    /* ── Confirmation warning box ────────────────────────────────────────── */
+    .confirm-box {
+        background: var(--confirm-bg);
+        border: 2px solid var(--confirm-border);
+        border-radius: 8px; padding: 0.7rem 1rem;
+        margin: 0.4rem 0; font-size: 0.85rem;
+        color: var(--confirm-text); font-weight: 600;
+    }
+
     #MainMenu, footer { visibility: hidden; }
 </style>
 """, unsafe_allow_html=True)
@@ -419,16 +518,9 @@ if submitted and query:
 
         st.markdown("---")
         standalone = result["standalone_query"]
-        query_display = (
-            f'<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;'
-            f'padding:0.8rem 1.2rem;margin-bottom:0.4rem"><b>🔎 Original Query:</b> {query}</div>'
-        )
+        query_display = f'<div class="query-box"><b>🔎 Original Query:</b> {query}</div>'
         if standalone != query:
-            query_display += (
-                f'<div style="background:#eaf4fb;border:1px solid #aed6f1;border-radius:10px;'
-                f'padding:0.6rem 1.2rem;margin-bottom:1rem;font-size:0.88rem">'
-                f'🔄 <b>Rewritten Query:</b> <em>{standalone}</em></div>'
-            )
+            query_display += f'<div class="rewrite-box">🔄 <b>Rewritten Query:</b> <em>{standalone}</em></div>'
         st.markdown(query_display, unsafe_allow_html=True)
 
         col1, col2 = st.columns(2)
